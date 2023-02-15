@@ -1,0 +1,10 @@
+function repo() {
+    [[ -z "$1" ]] && echo "Must supply part of repo name" && return 1
+
+    result=$(find ~/Desktop -name .git -type d | sed 's/\/.git//g' | grep -i "$1" | head -n 1)
+
+    [[ -z "$result" ]] && echo "No repos found matching $1" && return 1
+
+    echo "Navigating to $result"
+    cd "$result"
+}
